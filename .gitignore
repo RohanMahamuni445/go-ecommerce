@@ -1,0 +1,10 @@
+# Ignore Go binaries
+*.exe
+*.out
+*.o
+
+# Ignore Go workspace files
+/go/
+bin/
+pkg/
+
