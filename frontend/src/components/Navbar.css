@@ -1,0 +1,25 @@
+.navbar {
+  background-color: #212529 !important;
+}
+
+.navbar-nav .nav-link {
+  color: white !important;
+}
+
+.navbar-nav .nav-link:hover {
+  text-decoration: underline;
+}
+.product-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh; /* Adjust as needed */
+}
+.navbar-nav .nav-link {
+  padding-right: 15px;
+}
+.card:hover {
+  transform: scale(1.05);
+  transition: 0.3s ease-in-out;
+}
+
