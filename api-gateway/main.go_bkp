@@ -44,42 +44,42 @@ func main() {
 
 	// ✅ User Authentication Service (Port 8085)
 	r.POST("/register", func(c *gin.Context) {
-		forwardRequest(c, "http://user-service-container:8081/register")
+		forwardRequest(c, "http://localhost:8085/register")
 	})
 	r.POST("/login", func(c *gin.Context) {
-		forwardRequest(c, "http://user-service-container:8081/login")
+		forwardRequest(c, "http://localhost:8085/login")
 	})
 
 	// ✅ Product Catalog Service (Port 8082)
 	r.GET("/products", func(c *gin.Context) {
-		forwardRequest(c, "http://product-service-container:8082/products")
+		forwardRequest(c, "http://localhost:8082/products")
 	})
 	r.GET("/products/:id", func(c *gin.Context) {
-		forwardRequest(c, "http://product-service-container:8082/products/" + c.Param("id"))
+		forwardRequest(c, "http://localhost:8082/products/" + c.Param("id"))
 	})
 
 	// ✅ Shopping Cart Service (Port 8083)
 	r.GET("/cart/:user_id", func(c *gin.Context) {
-		forwardRequest(c, "http://cart-service-container:8083/cart/" + c.Param("user_id"))
+		forwardRequest(c, "http://localhost:8083/cart/" + c.Param("user_id"))
 	})
 	r.POST("/cart", func(c *gin.Context) {
-		forwardRequest(c, "http://cart-service-container:8083/cart")
+		forwardRequest(c, "http://localhost:8083/cart")
 	})
 	r.DELETE("/cart/:id", func(c *gin.Context) {
-		forwardRequest(c, "http://cart-service-container:8083/cart/" + c.Param("id"))
+		forwardRequest(c, "http://localhost:8083/cart/" + c.Param("id"))
 	})
 
 	// ✅ Order Management Service (Port 8084)
 	r.POST("/orders", func(c *gin.Context) {
-		forwardRequest(c, "http://order-service-container:8084/orders")
+		forwardRequest(c, "http://localhost:8084/orders")
 	})
 	r.GET("/orders", func(c *gin.Context) {
-		forwardRequest(c, "http://order-service-container:8084/orders")
+		forwardRequest(c, "http://localhost:8084/orders")
 	})
 
 	// ✅ Payment Service (Port 8084)
 	r.POST("/payments", func(c *gin.Context) {
-		forwardRequest(c, "http://order-service-container:8084/payments")
+		forwardRequest(c, "http://localhost:8084/payments")
 	})
 
 	// Start API Gateway on port 8086

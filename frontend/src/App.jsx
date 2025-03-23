@@ -4,14 +4,17 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import Navbar from "./components/Navbar";
 import "./App.css";
-import Cart from "./pages/Cart";  // Cart page
-import Login from "./pages/Login"; // Login page
+import Cart from "./pages/Cart";  
+import Login from "./pages/Login"; 
+
+// ✅ Set API base URL dynamically
+const API_BASE_URL = process.env.REACT_APP_API_URL || "http://localhost:8086";
 
 function ProductList() {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:8086/products")
+    fetch(`${API_BASE_URL}/products`)
       .then((response) => response.json())
       .then((data) => setProducts(data))
       .catch((error) => console.error("Error fetching products:", error));
@@ -44,6 +47,7 @@ function ProductList() {
     </div>
   );
 }
+
 // ✅ Protected Route Component
 const ProtectedRoute = ({ children }) => {
   const token = localStorage.getItem("token");
