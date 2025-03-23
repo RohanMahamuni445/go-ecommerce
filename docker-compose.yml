@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql
+    container_name: mysql-db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: ecommerce
+      MYSQL_USER: rohan
+      MYSQL_PASSWORD: Rohan@445
+    ports:
+      - "3307:3306"
+
+    volumes:
+      - mysql_datavolume:/var/lib/mysql
+
+
+volumes:
+  mysql_datavolume:
