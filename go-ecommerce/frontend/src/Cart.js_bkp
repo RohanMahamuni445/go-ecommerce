@@ -1,0 +1,28 @@
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+
+function Cart() {
+  const [cart, setCart] = useState([]);
+
+  useEffect(() => {
+    axios.get("http://localhost:8080/cart").then((response) => {
+      setCart(response.data);
+    });
+  }, []);
+
+  return (
+    <div>
+      <h2>Cart</h2>
+      <ul>
+        {cart.map((item) => (
+          <li key={item.id}>
+            {item.name} - {item.quantity} pcs
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+export default Cart;
+

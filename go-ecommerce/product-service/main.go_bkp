@@ -1,0 +1,36 @@
+package main
+
+import (
+	"encoding/json"
+	"log"
+	"net/http"
+)
+
+type Product struct {
+	ID    int    `json:"id"`
+	Name  string `json:"name"`
+	Price int    `json:"price"`
+	Image string `json:"image"`
+}
+
+var products = []Product{
+	{ID: 1, Name: "Laptop", Price: 50000, Image: "laptop.jpg"},
+	{ID: 2, Name: "Phone", Price: 20000, Image: "phone.jpg"},
+	{ID: 3, Name: "Headphones", Price: 5000, Image: "headphones.jpg"},
+}
+
+func productHandler(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(products)
+}
+
+func main() {
+	http.HandleFunc("/products", productHandler)
+
+	log.Println("Starting Product Service on :8081")
+	err := http.ListenAndServe(":8081", nil)
+	if err != nil {
+		log.Fatal("Product Service failed to start: ", err)
+	}
+}
+
