@@ -63,7 +63,7 @@ func loginHandler(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 	var err error
-	db, err = sql.Open("mysql", "root:root@tcp(localhost:3306)/go_ecommerce")
+	db, err = sql.Open("mysql", "root:root@tcp(mysql:3306)/ecommerce")
 	if err != nil {
 		log.Fatal("Failed to connect to database:", err)
 	}

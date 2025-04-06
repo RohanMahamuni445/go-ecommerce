@@ -13,19 +13,32 @@ function Auth() {
     }
   }, []);
 
-  const handleRegister = () => {
-    axios.post("http://localhost:8080/register", { username, password })
-      .then(response => alert(response.data))
-      .catch(error => alert("Error registering"));
+  const handleRegister = async () => {
+    try {
+      const response = await axios.post("http://localhost:8080/register", {
+        username,
+        password,
+      });
+      alert(response.data);
+    } catch (error) {
+      console.error("Registration failed:", error);
+      alert("Error registering");
+    }
   };
 
-  const handleLogin = () => {
-    axios.post("http://localhost:8080/login", { username, password })
-      .then(response => {
-        localStorage.setItem("user", username);
-        setLoggedInUser(username);
-      })
-      .catch(error => alert("Invalid login"));
+  const handleLogin = async () => {
+    try {
+      const response = await axios.post("http://localhost:8080/login", {
+        username,
+        password,
+      });
+      localStorage.setItem("user", username);
+      setLoggedInUser(username);
+      alert("Login successful!");
+    } catch (error) {
+      console.error("Login failed:", error);
+      alert("Invalid login");
+    }
   };
 
   const handleLogout = () => {
@@ -43,12 +56,26 @@ function Auth() {
           <button onClick={handleLogout}>Logout</button>
         </div>
       ) : (
-        <>
-          <input type="text" placeholder="Username" onChange={(e) => setUsername(e.target.value)} />
-          <input type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
-          <button onClick={handleRegister}>Register</button>
+        <div>
+          <input
+            type="text"
+            placeholder="Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            style={{ marginRight: "10px" }}
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            style={{ marginRight: "10px" }}
+          />
+          <button onClick={handleRegister} style={{ marginRight: "10px" }}>
+            Register
+          </button>
           <button onClick={handleLogin}>Login</button>
-        </>
+        </div>
       )}
     </div>
   );

@@ -21,7 +21,7 @@ var db *sql.DB
 
 func initDB() {
 	var err error
-	db, err = sql.Open("mysql", "root:root@tcp(localhost:3306)/go_ecommerce") // Update password if needed
+	db, err = sql.Open("mysql", "root:root@tcp(mysql:3306)/ecommerce")// Update password if needed
 	if err != nil {
 		log.Fatal("Database connection failed:", err)
 	}
